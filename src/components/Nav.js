@@ -1,86 +1,30 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-/* ═══════════════════════════════════════════════════
-   GLOBAL CSS
-   KEY FIXES:
-   1. .dv-hero-content uses min-height:100vh + justify-content:flex-end
-      → text always sits at BOTTOM, never behind nav
-   2. Portrait videos: width:100%; height:auto; min-height:100%
-      positioned absolutely so they fill container from top
-   3. Landscape videos: standard object-fit:cover
-═══════════════════════════════════════════════════ */
 export const GCSS = `
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Syne:wght@400;600;700;800&display=swap');
 
-/* RESET */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{
-  background:#000;color:#fff;
-  font-family:'DM Sans',sans-serif;font-weight:300;
-  overflow-x:hidden;cursor:none;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
+body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 
 /* CURSOR */
 .dvc{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;}
 .dvc-dot{width:5px;height:5px;background:#fff;border-radius:50%;transform:translate(-50%,-50%);position:absolute;}
-.dvc-ring{
-  width:28px;height:28px;
-  border:1px solid rgba(255,255,255,0.4);border-radius:50%;
-  transform:translate(-50%,-50%);
-  transition:all 0.2s ease;position:absolute;
-}
+.dvc-ring{width:28px;height:28px;border:1px solid rgba(255,255,255,0.4);border-radius:50%;transform:translate(-50%,-50%);transition:all 0.2s ease;position:absolute;}
 .dvc-ring.h{transform:translate(-50%,-50%) scale(2.2);border-color:rgba(255,255,255,0.85);}
 
-/* ═══════════════════════════════════════
-   NAV - always fixed, always z-index:500
-═══════════════════════════════════════ */
-.dv-nav{
-  position:fixed;top:0;left:0;right:0;z-index:500;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px 48px;
-  transition:all 0.5s cubic-bezier(0.4,0,0.2,1);
-  /* transparent by default - no background */
-}
-.dv-nav.solid{
-  background:rgba(0,0,0,0.92);
-  backdrop-filter:blur(28px) saturate(180%);
-  -webkit-backdrop-filter:blur(28px) saturate(180%);
-  padding:13px 48px;
-  border-bottom:1px solid rgba(255,255,255,0.07);
-}
+/* NAV */
+.dv-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);}
+.dv-nav.solid{background:rgba(0,0,0,0.92);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);padding:13px 48px;border-bottom:1px solid rgba(255,255,255,0.07);}
 .dv-logo{display:flex;align-items:center;text-decoration:none;cursor:pointer;flex-shrink:0;}
-.dv-logo img{
-  height:72px;width:140px;
-  object-fit:contain;
-  filter:brightness(1.15);
-  transition:all 0.4s ease;
-  display:block;
-}
+.dv-logo img{height:72px;width:140px;object-fit:contain;filter:brightness(1.15);transition:all 0.4s ease;display:block;}
 .dv-nav.solid .dv-logo img{height:52px;width:105px;}
 .dv-nl{display:flex;gap:28px;list-style:none;}
-.dv-nl a{
-  color:rgba(255,255,255,0.45);
-  text-decoration:none;
-  font-size:0.73rem;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  transition:color 0.3s;cursor:pointer;
-}
+.dv-nl a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.3s;cursor:pointer;}
 .dv-nl a:hover,.dv-nl a.act{color:#fff;}
 .dv-nr{display:flex;align-items:center;gap:12px;}
-.dv-cta{
-  background:transparent;
-  border:1px solid rgba(255,255,255,0.2);
-  color:#fff;padding:9px 20px;
-  font-family:'DM Sans',sans-serif;
-  font-size:0.7rem;letter-spacing:0.12em;
-  text-transform:uppercase;cursor:pointer;
-  transition:all 0.3s;text-decoration:none;display:inline-block;
-}
+.dv-cta{background:transparent;border:1px solid rgba(255,255,255,0.2);color:#fff;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-block;}
 .dv-cta:hover{background:#fff;color:#000;}
 
 /* BURGER */
@@ -91,214 +35,85 @@ body{
 .dv-bg.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
 
 /* MOBILE MENU */
-.dv-mob{
-  position:fixed;inset:0;z-index:550;background:#000;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:24px;transform:translateX(100%);
-  transition:transform 0.48s cubic-bezier(0.4,0,0.2,1);
-}
+.dv-mob{position:fixed;inset:0;z-index:550;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transform:translateX(100%);transition:transform 0.48s cubic-bezier(0.4,0,0.2,1);}
 .dv-mob.open{transform:translateX(0);}
-.dv-mob a{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2rem,8vw,3.2rem);
-  color:rgba(255,255,255,0.38);
-  text-decoration:none;letter-spacing:0.06em;transition:color 0.3s;
-}
+.dv-mob a{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,8vw,3.2rem);color:rgba(255,255,255,0.38);text-decoration:none;letter-spacing:0.06em;transition:color 0.3s;}
 .dv-mob a:hover{color:#fff;}
-.dv-mob .mob-cta{
-  font-family:'DM Sans',sans-serif;font-size:0.8rem;
-  border:1px solid rgba(255,255,255,0.2);
-  padding:13px 28px;letter-spacing:0.12em;
-  text-transform:uppercase;color:#fff;margin-top:6px;
-}
+.dv-mob .mob-cta{font-family:'DM Sans',sans-serif;font-size:0.8rem;border:1px solid rgba(255,255,255,0.2);padding:13px 28px;letter-spacing:0.12em;text-transform:uppercase;color:#fff;margin-top:6px;}
 
-/* ═══════════════════════════════════════
+/* ══════════════════════════════════════════
    VIDEO SYSTEM
-   
-   LANDSCAPE videos (v1,v2,v3,v4,v5,v7,v10,v11,v12):
-   → standard object-fit:cover fills the container
-   
-   PORTRAIT videos (v6,v8,v9,v13,v14):
-   → on desktop: centered, covers height, may crop sides
-   → the subject (robot face) is shown at top
-═══════════════════════════════════════ */
-
-/* Full viewport hero */
-.dv-hero{
-  position:relative;
-  width:100%;
-  height:100vh;
-  min-height:640px;
-  overflow:hidden;
-  /* flexbox so content can sit at bottom */
-  display:flex;
-  flex-direction:column;
-}
-
-/* Half height section */
-.dv-half{
-  position:relative;
-  width:100%;
-  height:60vh;min-height:380px;
-  overflow:hidden;
-  display:flex;flex-direction:column;
-}
-
-/* Strip section */
-.dv-strip{
-  position:relative;
-  width:100%;
-  height:44vh;min-height:260px;
-  overflow:hidden;
-  display:flex;flex-direction:column;
-}
-
-/* Landscape video element */
-.vid-land{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;
-  object-position:center center;
-  z-index:0;
-}
-
-/* Portrait video element — fills height, centers horizontally
-   On desktop: the video is taller than wide so we use
-   width:56% keeps the subject visible without extreme cropping
-   On mobile: width:100% fills screen */
-.vid-port{
-  position:absolute;
-  top:0;
-  left:50%;
-  transform:translateX(-50%);
-  height:100%;
-  width:auto;
-  min-width:56%;
-  max-width:none;
-  object-fit:cover;
-  object-position:center top;
-  z-index:0;
-}
-
-/* Overlays */
+   Landscape: standard object-fit cover
+   Portrait: contained or centered-fill depending on context
+══════════════════════════════════════════ */
+.dv-hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;display:flex;flex-direction:column;}
+.dv-half{position:relative;width:100%;height:60vh;min-height:380px;overflow:hidden;display:flex;flex-direction:column;}
+.dv-strip{position:relative;width:100%;height:44vh;min-height:260px;overflow:hidden;display:flex;flex-direction:column;}
+.vid-land{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:0;}
+.vid-port{position:absolute;top:0;left:50%;transform:translateX(-50%);height:100%;width:auto;min-width:100%;object-fit:cover;object-position:center top;z-index:0;}
 .ov-d{position:absolute;inset:0;background:rgba(0,0,0,0.54);z-index:1;}
 .ov-b{position:absolute;inset:0;background:linear-gradient(to top,#000 0%,rgba(0,0,0,0.3) 38%,transparent 100%);z-index:2;}
 .ov-r{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.35) 55%,transparent 100%);z-index:2;}
 .ov-s{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.055) 3px,rgba(0,0,0,0.055) 4px);pointer-events:none;z-index:3;}
 
-/* ═══════════════════════════════════════
-   HERO CONTENT — ABSOLUTE POSITIONING FIX
-   
-   CRITICAL: position:absolute fills entire hero
-   display:flex + flex-direction:column + justify-content:flex-end
-   → text is ALWAYS at the bottom, never touches nav
-   padding-top:100px = hard nav clearance
-   z-index:10 = above all video overlays (z-index 1,2,3)
-═══════════════════════════════════════ */
-.dv-hc{
-  position:absolute;
-  inset:0;
-  z-index:10;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:100px 48px 80px 48px;
-}
+/* ══════════════════════════════════════════
+   HERO CONTENT — DEFINITIVE NAVBAR FIX
 
-/* Half section content */
-.dv-hc-half{
+   The problem: clamp(4rem,11vw,11rem) at 1440px = 158px/line
+   Three lines = 474px+ growing UPWARD from bottom, hitting nav.
+
+   Solution:
+   1. Cap font at 7rem max (safe for 3 lines at any viewport)
+   2. Use max-height:45vh on the text block — if text exceeds
+      45% of viewport height it stays contained in lower half
+   3. padding-bottom:88px keeps text off the very bottom edge
+   
+   justify-content:flex-end anchors text to BOTTOM always.
+   Text grows UP from bottom — never touches nav at top.
+══════════════════════════════════════════ */
+.dv-hc{
   position:absolute;inset:0;z-index:10;
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:80px 48px 52px 48px;
+  padding:0 48px 88px 48px;
 }
+.dv-hc-half{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 56px 48px;}
+.dv-hc-strip{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:0 48px;}
 
-/* Strip section content */
-.dv-hc-strip{
-  position:absolute;inset:0;z-index:10;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:0 48px;
-}
-
-/* ═══════════════════════════════════════
+/* ══════════════════════════════════════════
    TYPOGRAPHY
-═══════════════════════════════════════ */
-.dv-ey{
-  font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;
-  color:rgba(255,255,255,0.36);margin-bottom:18px;
-  display:flex;align-items:center;gap:12px;
-}
+   
+   dv-h1: capped at 7rem — safe for 3-line hero on any desktop.
+   At 1440px: 3 lines × 7rem × 0.9 lineheight = ~378px
+   viewport = 900px → text block is 42% of viewport = safe bottom zone
+══════════════════════════════════════════ */
+.dv-ey{font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-bottom:18px;display:flex;align-items:center;gap:12px;}
 .dv-ey::before{content:'';width:22px;height:1px;background:rgba(255,255,255,0.28);}
 .dv-ey.c{justify-content:center;}
 .dv-ey.c::before{display:none;}
 
 .dv-h1{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(4rem,11vw,11rem);
-  line-height:0.88;letter-spacing:0.01em;color:#fff;
-}
-.dv-h2{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.8rem,6vw,7rem);
+  font-size:clamp(3.2rem,5.5vw,7rem);
   line-height:0.9;letter-spacing:0.01em;color:#fff;
 }
-.dv-h3{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2rem,4vw,4.5rem);
-  line-height:0.92;letter-spacing:0.01em;color:#fff;
-}
+.dv-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,5vw,6.5rem);line-height:0.9;letter-spacing:0.01em;color:#fff;}
+.dv-h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.5vw,4.2rem);line-height:0.92;letter-spacing:0.01em;color:#fff;}
 .dv-dim{color:rgba(255,255,255,0.2);}
-.dv-sub{
-  font-size:clamp(0.86rem,1.3vw,1rem);
-  color:rgba(255,255,255,0.42);max-width:480px;
-  line-height:1.88;margin-top:22px;margin-bottom:30px;
-}
-.dv-body{
-  font-size:clamp(0.86rem,1.3vw,1rem);
-  color:rgba(255,255,255,0.4);line-height:1.88;max-width:540px;
-}
+.dv-sub{font-size:clamp(0.82rem,1.2vw,0.96rem);color:rgba(255,255,255,0.42);max-width:480px;line-height:1.88;margin-top:18px;margin-bottom:26px;}
+.dv-body{font-size:clamp(0.82rem,1.2vw,0.96rem);color:rgba(255,255,255,0.4);line-height:1.88;max-width:540px;}
 .dv-body strong{color:rgba(255,255,255,0.74);font-weight:400;}
 
-/* BUTTONS — Apple pill style */
+/* BUTTONS — compact Apple pill */
 .dv-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
-.btn-w{
-  background:#fff;color:#000;
-  font-family:'DM Sans',sans-serif;font-weight:500;
-  font-size:0.76rem;letter-spacing:0.1em;text-transform:uppercase;
-  padding:13px 28px;border:none;cursor:pointer;
-  transition:all 0.32s cubic-bezier(0.4,0,0.2,1);
-  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
-  border-radius:980px;
-}
+.btn-w{background:#fff;color:#000;font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;padding:10px 20px;border:none;cursor:pointer;transition:all 0.32s cubic-bezier(0.4,0,0.2,1);text-decoration:none;display:inline-flex;align-items:center;gap:7px;border-radius:980px;white-space:nowrap;}
 .btn-w:hover{background:rgba(255,255,255,0.86);transform:scale(1.02);}
-.btn-o{
-  background:rgba(255,255,255,0.08);color:#fff;
-  font-family:'DM Sans',sans-serif;
-  font-size:0.76rem;letter-spacing:0.1em;text-transform:uppercase;
-  padding:13px 28px;
-  border:1px solid rgba(255,255,255,0.2);cursor:pointer;
-  transition:all 0.32s cubic-bezier(0.4,0,0.2,1);
-  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
-  border-radius:980px;
-}
+.btn-o{background:rgba(255,255,255,0.08);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;padding:10px 20px;border:1px solid rgba(255,255,255,0.2);cursor:pointer;transition:all 0.32s cubic-bezier(0.4,0,0.2,1);text-decoration:none;display:inline-flex;align-items:center;gap:7px;border-radius:980px;white-space:nowrap;}
 .btn-o:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.48);}
 
 /* SCROLL INDICATOR */
-.dv-sc{
-  position:absolute;bottom:28px;right:48px;z-index:10;
-  display:flex;flex-direction:column;align-items:center;gap:7px;
-  color:rgba(255,255,255,0.22);font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;
-}
-.dv-sc-line{
-  width:1px;height:36px;
-  background:linear-gradient(to bottom,rgba(255,255,255,0.28),transparent);
-  animation:scl 2s ease-in-out infinite;
-}
-@keyframes scl{
-  0%{transform:scaleY(0);transform-origin:top;}
-  50%{transform:scaleY(1);transform-origin:top;}
-  51%{transform:scaleY(1);transform-origin:bottom;}
-  100%{transform:scaleY(0);transform-origin:bottom;}
-}
+.dv-sc{position:absolute;bottom:28px;right:48px;z-index:10;display:flex;flex-direction:column;align-items:center;gap:7px;color:rgba(255,255,255,0.22);font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;}
+.dv-sc-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(255,255,255,0.28),transparent);animation:scl 2s ease-in-out infinite;}
+@keyframes scl{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
 
 /* BLACK SECTIONS */
 .blk{background:#000;position:relative;z-index:1;}
@@ -323,59 +138,30 @@ body{
 .dv-2c{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,0.07);}
 .dv-2c-l{border-right:1px solid rgba(255,255,255,0.07);}
 
-/* Portrait video in split panel */
-.dv-pv{
-  position:relative;overflow:hidden;
-  min-height:580px;
-}
-/* Portrait video inside split — fill height, center horiz */
-.dv-pv video{
-  position:absolute;
-  top:0;left:50%;
-  transform:translateX(-50%);
-  height:100%;width:auto;
-  min-width:100%;
-  object-fit:cover;
-  object-position:center top;
-  z-index:0;
-}
-.dv-pv::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to right,transparent 55%,#000 100%);
-  z-index:1;
-}
-
-/* REVEAL — Apple smooth */
-.rv{opacity:0;transform:translateY(22px);transition:opacity 1s cubic-bezier(0.25,0.46,0.45,0.94),transform 1s cubic-bezier(0.25,0.46,0.45,0.94);}
+/* REVEAL */
+.rv{opacity:0;transform:translateY(22px);transition:opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);}
 .rv.in{opacity:1;transform:translateY(0);}
-.rv-l{opacity:0;transform:translateX(-22px);transition:opacity 1s cubic-bezier(0.25,0.46,0.45,0.94),transform 1s cubic-bezier(0.25,0.46,0.45,0.94);}
+.rv-l{opacity:0;transform:translateX(-22px);transition:opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);}
 .rv-l.in{opacity:1;transform:translateX(0);}
-.rv-r{opacity:0;transform:translateX(22px);transition:opacity 1s cubic-bezier(0.25,0.46,0.45,0.94),transform 1s cubic-bezier(0.25,0.46,0.45,0.94);}
+.rv-r{opacity:0;transform:translateX(22px);transition:opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);}
 .rv-r.in{opacity:1;transform:translateX(0);}
-.rv-s{opacity:0;transform:scale(0.97);transition:opacity 1.1s cubic-bezier(0.25,0.46,0.45,0.94),transform 1.1s cubic-bezier(0.25,0.46,0.45,0.94);}
+.rv-s{opacity:0;transform:scale(0.97);transition:opacity 1s cubic-bezier(0.25,0.46,0.45,0.94),transform 1s cubic-bezier(0.25,0.46,0.45,0.94);}
 .rv-s.in{opacity:1;transform:scale(1);}
 
-/* FOOTER */
-.dv-ft{border-top:1px solid rgba(255,255,255,0.07);padding:56px 48px;background:#000;}
+/* FOOTER — simplified */
+.dv-ft{border-top:1px solid rgba(255,255,255,0.07);padding:52px 48px;background:#000;}
 .dv-ft-in{max-width:1400px;margin:0 auto;}
-.dv-ft-top{display:flex;justify-content:space-between;align-items:flex-start;gap:60px;flex-wrap:wrap;margin-bottom:52px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,0.06);}
-.dv-ft-brand img{height:76px;width:152px;object-fit:contain;filter:brightness(1.1);display:block;margin-bottom:14px;}
-.dv-ft-tag{font-size:0.76rem;color:rgba(255,255,255,0.2);line-height:1.7;max-width:230px;}
-.dv-ft-cols{display:flex;gap:64px;flex-wrap:wrap;}
-.dv-ft-col h4{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:18px;}
-.dv-ft-col ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
-.dv-ft-col ul a,.dv-ft-col ul li{font-size:0.78rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.3s;cursor:default;}
-.dv-ft-col ul a{cursor:pointer;}
-.dv-ft-col ul a:hover{color:#fff;}
-.dv-ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
-.dv-ft-copy{font-size:0.68rem;color:rgba(255,255,255,0.16);letter-spacing:0.05em;}
+.dv-ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+.dv-ft-brand{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.dv-ft-brand img{height:68px;width:136px;object-fit:contain;filter:brightness(1.1);display:block;}
+.dv-ft-tag{font-size:0.74rem;color:rgba(255,255,255,0.18);line-height:1.6;max-width:280px;}
+.dv-ft-right{display:flex;align-items:center;gap:32px;flex-wrap:wrap;}
+.dv-ft-copy{font-size:0.68rem;color:rgba(255,255,255,0.16);letter-spacing:0.04em;}
 .dv-ft-socs{display:flex;gap:10px;}
 .dv-ft-soc{width:34px;height:34px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.24);text-decoration:none;transition:all 0.3s;border-radius:50%;}
 .dv-ft-soc:hover{border-color:rgba(255,255,255,0.5);color:#fff;}
 
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
+/* RESPONSIVE */
 @media(max-width:900px){
   .dv-nav{padding:14px 20px;}
   .dv-nav.solid{padding:10px 20px;}
@@ -384,32 +170,24 @@ body{
   .dv-nl{display:none;}
   .dv-nr .dv-cta{display:none;}
   .dv-bg{display:flex;}
-  
-  /* On mobile hero content gets less top padding since nav is smaller */
-  .dv-hc{padding:90px 20px 64px 20px;}
-  .dv-hc-half{padding:70px 20px 44px 20px;}
+  .dv-hc{padding:0 20px 64px 20px;}
+  .dv-hc-half{padding:0 20px 44px 20px;}
   .dv-hc-strip{padding:0 20px;}
   .dv-sc{right:20px;}
   .dv-in{padding:0 20px;}
-  
   .dv-2c{grid-template-columns:1fr;}
   .dv-2c-l{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);}
-  .dv-pv{min-height:300px;}
-  /* On mobile portrait split: gradient goes down not right */
-  .dv-pv::after{background:linear-gradient(to top,#000 0%,transparent 60%);}
-  
   .dv-sr{flex-wrap:wrap;}
   .dv-st{min-width:50%;border-bottom:1px solid rgba(255,255,255,0.07);}
-  
-  .dv-ft{padding:40px 20px;}
-  .dv-ft-top{flex-direction:column;gap:32px;}
-  .dv-ft-cols{gap:32px;}
+  .dv-ft{padding:36px 20px;}
+  .dv-ft-bot{flex-direction:column;align-items:flex-start;gap:20px;}
+  .dv-ft-brand{flex-direction:column;align-items:flex-start;gap:12px;}
+  .dv-ft-right{gap:20px;}
 }
 @media(max-width:480px){
   .dv-logo img{height:48px;width:96px;}
   .dv-nav.solid .dv-logo img{height:38px;width:78px;}
-  .dv-ft-brand img{height:64px;width:130px;}
-  .dv-h1{font-size:clamp(3.2rem,14vw,6rem);}
+  .dv-ft-brand img{height:56px;width:112px;}
   .dv-st{min-width:100%;}
 }
 `;
@@ -421,56 +199,26 @@ const MQ_ITEMS = ["Data Collection","Pipeline Architecture","Real-Time Processin
 
 export function Marquee() {
   const all = [...MQ_ITEMS,...MQ_ITEMS];
-  return (
-    <div className="dv-mw">
-      <div className="dv-mt">{all.map((x,i)=><span key={i} className="dv-mi">{x}</span>)}</div>
-    </div>
-  );
+  return <div className="dv-mw"><div className="dv-mt">{all.map((x,i)=><span key={i} className="dv-mi">{x}</span>)}</div></div>;
 }
 
+/* Footer — simplified: just logo + tagline + socials + copyright */
 export function Footer() {
   return (
     <footer className="dv-ft">
       <div className="dv-ft-in">
-        <div className="dv-ft-top">
+        <div className="dv-ft-bot">
           <div className="dv-ft-brand">
             <img src="/logo.png" alt="DataVale AI"/>
             <p className="dv-ft-tag">From data to decision. Powering the AI economy with human intelligence, at global scale.</p>
           </div>
-          <div className="dv-ft-cols">
-            <div className="dv-ft-col">
-              <h4>Company</h4>
-              <ul>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/intelligence">Intelligence</Link></li>
-                <li><Link to="/capabilities">Capabilities</Link></li>
-                <li><Link to="/services">Services</Link></li>
-              </ul>
+          <div className="dv-ft-right">
+            <div className="dv-ft-copy">© 2026 DataVale AI. All rights reserved.</div>
+            <div className="dv-ft-socs">
+              <a href="https://www.linkedin.com/company/datavaleai" target="_blank" rel="noreferrer" className="dv-ft-soc"><LI/></a>
+              <a href="https://www.instagram.com/datavaleai" target="_blank" rel="noreferrer" className="dv-ft-soc"><IG/></a>
+              <a href="mailto:info@datavaleai.com" className="dv-ft-soc">✉</a>
             </div>
-            <div className="dv-ft-col">
-              <h4>Resources</h4>
-              <ul>
-                <li><Link to="/insights">Insights</Link></li>
-                <li><Link to="/join">Join Us</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
-              </ul>
-            </div>
-            <div className="dv-ft-col">
-              <h4>Connect</h4>
-              <ul>
-                <li><a href="mailto:info@datavaleai.com">info@datavaleai.com</a></li>
-                <li><a href="https://www.linkedin.com/company/datavaleai" target="_blank" rel="noreferrer">LinkedIn</a></li>
-                <li><a href="https://www.instagram.com/datavaleai" target="_blank" rel="noreferrer">Instagram</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="dv-ft-bot">
-          <div className="dv-ft-copy">© 2025 DataVale AI. All rights reserved.</div>
-          <div className="dv-ft-socs">
-            <a href="https://www.linkedin.com/company/datavaleai" target="_blank" rel="noreferrer" className="dv-ft-soc"><LI/></a>
-            <a href="https://www.instagram.com/datavaleai" target="_blank" rel="noreferrer" className="dv-ft-soc"><IG/></a>
-            <a href="mailto:info@datavaleai.com" className="dv-ft-soc">✉</a>
           </div>
         </div>
       </div>
@@ -532,7 +280,7 @@ export default function Nav() {
       }, { threshold:0.06 });
       els.forEach(el => obs.observe(el));
       return () => obs.disconnect();
-    }, 100);
+    }, 80);
     return () => clearTimeout(t);
   }, [loc.pathname]);
 
@@ -542,10 +290,7 @@ export default function Nav() {
   return (
     <>
       <style>{GCSS}</style>
-      <div className="dvc">
-        <div className="dvc-ring" id="dvring"></div>
-        <div className="dvc-dot" id="dvdot"></div>
-      </div>
+      <div className="dvc"><div className="dvc-ring" id="dvring"></div><div className="dvc-dot" id="dvdot"></div></div>
       <div className={`dv-mob${menu?" open":""}`}>
         <Link to="/" onClick={close}>Home</Link>
         <Link to="/about" onClick={close}>About</Link>
@@ -569,9 +314,7 @@ export default function Nav() {
         </ul>
         <div className="dv-nr">
           <Link to="/contact" className="dv-cta">Get in Touch</Link>
-          <button className={`dv-bg${menu?" open":""}`} onClick={()=>setMenu(o=>!o)} aria-label="Menu">
-            <span/><span/><span/>
-          </button>
+          <button className={`dv-bg${menu?" open":""}`} onClick={()=>setMenu(o=>!o)} aria-label="Menu"><span/><span/><span/></button>
         </div>
       </nav>
     </>

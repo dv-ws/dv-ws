@@ -6,44 +6,46 @@ const css = `
 .ab-2c{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,0.07);align-items:stretch;}
 .ab-2c-l{border-right:1px solid rgba(255,255,255,0.07);}
 
-/* v8 portrait — CONTAIN on desktop so no cropping */
+/* v8 portrait video cell
+   Desktop: object-fit:contain — shows full video, black bg fills gaps
+   Mobile: object-fit:cover — fills the smaller container width */
 .ab-vid-cell{
-  position:relative;overflow:hidden;background:#000;
+  position:relative;
+  overflow:hidden;
+  background:#000;
   display:flex;align-items:center;justify-content:center;
-  min-height:500px;
 }
-/* Desktop: contain — full portrait visible, black bg fills gaps */
+/* Desktop */
 @media(min-width:901px){
   .ab-vid-cell{min-height:560px;max-height:680px;}
   .ab-vid-cell video{
-    width:auto;height:100%;max-width:100%;
-    object-fit:contain;display:block;
-    position:relative;z-index:0;
+    height:100%;width:auto;max-width:100%;
+    object-fit:contain;
+    display:block;position:relative;z-index:0;
   }
 }
-/* Mobile: cover fills screen width */
+/* Mobile — use cover so it fills the 260px tall cell nicely */
 @media(max-width:900px){
-  .ab-vid-cell{min-height:280px;max-height:340px;}
+  .ab-vid-cell{min-height:260px;max-height:300px;}
   .ab-vid-cell video{
     position:absolute;inset:0;
     width:100%;height:100%;
-    object-fit:cover;object-position:center top;
+    object-fit:cover;object-position:center 20%;
     z-index:0;
   }
 }
-.ab-vid-cell::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to right,transparent 60%,#000 100%);
-  z-index:1;pointer-events:none;
+/* Fade edge on right side (desktop only) */
+@media(min-width:901px){
+  .ab-vid-cell::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to right,transparent 62%,#000 100%);
+    z-index:1;pointer-events:none;
+  }
 }
 .ab-txt{padding:88px 52px;display:flex;flex-direction:column;justify-content:center;}
 
 /* v4 landscape featured section */
-.ab-feat{
-  position:relative;height:60vh;min-height:400px;
-  overflow:hidden;border-top:1px solid rgba(255,255,255,0.07);
-  display:flex;flex-direction:column;
-}
+.ab-feat{position:relative;height:60vh;min-height:400px;overflow:hidden;border-top:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;}
 .ab-feat video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;}
 .ab-feat::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.55);z-index:1;}
 .ab-feat::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,#000 0%,transparent 60%);z-index:2;}
@@ -61,7 +63,6 @@ const css = `
 @media(max-width:900px){
   .ab-2c{grid-template-columns:1fr;}
   .ab-2c-l{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);}
-  .ab-vid-cell::after{background:linear-gradient(to top,#000 0%,transparent 60%);}
   .ab-txt{padding:48px 20px;}
   .ab-feat{height:50vh;}
   .ab-mg{grid-template-columns:1fr;}
@@ -76,14 +77,12 @@ export default function About() {
       <style>{css}</style>
       <Nav/>
 
-      {/* HERO — v7.mp4 landscape 3840×2160 */}
+      {/* HERO — v7 landscape 3840×2160 */}
       <div className="dv-hero">
         <video className="vid-land" autoPlay muted loop playsInline preload="auto">
           <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562311/v7_myxblt.mp4" type="video/mp4"/>
         </video>
-        <div className="ov-d"></div>
-        <div className="ov-b"></div>
-        <div className="ov-s"></div>
+        <div className="ov-d"></div><div className="ov-b"></div><div className="ov-s"></div>
         <div className="dv-hc">
           <div className="dv-ey">Who We Are</div>
           <h1 className="dv-h1">Raw Data.<br/>Real Intelligence.<br/>Your Edge.</h1>
@@ -92,7 +91,7 @@ export default function About() {
         <div className="dv-sc"><div className="dv-sc-line"></div>Scroll</div>
       </div>
 
-      {/* v8 portrait in split — contained, no crop */}
+      {/* v8 portrait — contain desktop, cover mobile */}
       <div className="blk">
         <div className="ab-2c">
           <div className="ab-2c-l ab-vid-cell rv-l">

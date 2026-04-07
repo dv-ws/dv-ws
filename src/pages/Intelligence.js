@@ -10,30 +10,25 @@ const css = `
 .int-nn{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,8vw,8rem);line-height:1;color:#fff;}
 .int-nl{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-top:10px;}
 
-/* v9 portrait hero — contain so no cropping on desktop */
-.int-v9-bg{
-  position:absolute;inset:0;z-index:0;
-  background:#000;
-  display:flex;align-items:center;justify-content:center;
+/* v9 portrait hero
+   Desktop: contain — full portrait shown, black bg on sides (no crop)
+   Mobile: cover — fills screen */
+.int-v9-wrap{position:absolute;inset:0;z-index:0;background:#000;overflow:hidden;}
+@media(min-width:901px){
+  .int-v9-wrap{display:flex;align-items:center;justify-content:center;}
+  .int-v9-wrap video{height:100%;width:auto;max-width:100%;object-fit:contain;display:block;}
 }
-.int-v9-bg video{
-  height:100%;
-  width:auto;
-  max-width:100%;
-  object-fit:contain;
+@media(max-width:900px){
+  .int-v9-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;}
 }
 
 /* v11 landscape featured section */
-.int-feat{
-  position:relative;height:70vh;min-height:460px;
-  overflow:hidden;border-top:1px solid rgba(255,255,255,0.07);
-  display:flex;flex-direction:column;
-}
+.int-feat{position:relative;height:70vh;min-height:460px;overflow:hidden;border-top:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;}
 .int-feat video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:0;}
 .int-feat::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.52);z-index:1;}
 .int-feat::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,#000 0%,rgba(0,0,0,0.2) 48%,transparent 100%);z-index:2;}
 
-/* v10 strip landscape */
+/* v10 strip */
 .int-v10{position:relative;height:38vh;min-height:240px;overflow:hidden;border-top:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;}
 .int-v10 video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;}
 .int-v10::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.62);z-index:1;}
@@ -48,15 +43,13 @@ const css = `
 .tc-n{font-family:'Syne',sans-serif;font-weight:700;font-size:0.83rem;color:#fff;}
 .tc-r{font-size:0.66rem;color:rgba(255,255,255,0.25);letter-spacing:0.1em;text-transform:uppercase;margin-top:5px;}
 .int-cta{padding:96px 48px;text-align:center;border-top:1px solid rgba(255,255,255,0.07);}
+
 @media(max-width:900px){
   .int-net{flex-wrap:wrap;}
   .int-ni{min-width:33.33%;border-bottom:1px solid rgba(255,255,255,0.07);}
   .int-tg{grid-template-columns:1fr;}
   .tc{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);}
   .int-cta{padding:60px 20px;}
-  /* On mobile v9: switch to cover so it fills screen */
-  .int-v9-bg video{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
-  .int-v9-bg{display:block;}
 }
 `;
 
@@ -72,16 +65,14 @@ export default function Intelligence() {
       <style>{css}</style>
       <Nav/>
 
-      {/* HERO — v9.mp4 portrait 1440×2560, contained so no crop on desktop */}
+      {/* HERO — v9 portrait, contained on desktop */}
       <div className="dv-hero">
-        <div className="int-v9-bg">
+        <div className="int-v9-wrap">
           <video autoPlay muted loop playsInline preload="auto">
             <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562046/v9_evodx1.mp4" type="video/mp4"/>
           </video>
         </div>
-        <div className="ov-d"></div>
-        <div className="ov-b"></div>
-        <div className="ov-s"></div>
+        <div className="ov-d"></div><div className="ov-b"></div><div className="ov-s"></div>
         <div className="dv-hc">
           <div className="dv-ey">The AI Economy</div>
           <h1 className="dv-h1">Intelligence<br/>by Everyone,<br/>for Everyone.</h1>
@@ -100,20 +91,20 @@ export default function Intelligence() {
         </div>
       </div>
 
-      {/* v11 landscape featured section — no cropping, wide */}
+      {/* v11 landscape featured */}
       <div className="int-feat">
         <video autoPlay muted loop playsInline preload="auto">
           <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775563034/v11_ldegyc.mp4" type="video/mp4"/>
         </video>
         <div className="dv-hc-half rv">
           <div className="dv-ey">The Human Behind the Machine</div>
-          <h2 className="dv-h2" style={{fontSize:"clamp(2.8rem,6vw,6.5rem)",marginBottom:"18px"}}>Every Model<br/>Learns from<br/>Someone Like You.</h2>
+          <h2 className="dv-h2" style={{fontSize:"clamp(2.8rem,5vw,6rem)",marginBottom:"18px"}}>Every Model<br/>Learns from<br/>Someone Like You.</h2>
           <p className="dv-body" style={{marginBottom:"28px",maxWidth:"440px"}}>We're not just collecting data — we're capturing human intelligence in all its diversity, nuance, and depth. That's what makes AI genuinely capable.</p>
           <Link to="/join" className="btn-w">Join as Contributor →</Link>
         </div>
       </div>
 
-      {/* v10 strip landscape */}
+      {/* v10 strip */}
       <div className="int-v10">
         <video autoPlay muted loop playsInline preload="auto">
           <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562162/v10_ybkcsx.mp4" type="video/mp4"/>
