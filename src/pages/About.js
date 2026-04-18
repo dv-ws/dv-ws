@@ -24,13 +24,15 @@ const css = `
     display:block;position:relative;z-index:0;
   }
 }
-/* Mobile — use cover so it fills the 260px tall cell nicely */
+/* Mobile — taller container so portrait video shows properly */
 @media(max-width:900px){
-  .ab-vid-cell{min-height:260px;max-height:300px;}
+  .ab-vid-cell{min-height:420px;max-height:500px;}
   .ab-vid-cell video{
     position:absolute;inset:0;
     width:100%;height:100%;
-    object-fit:cover;object-position:center 20%;
+    object-fit:cover;
+    /* center 10% shows the top portion (face/subject) of portrait video */
+    object-position:center 10%;
     z-index:0;
   }
 }
