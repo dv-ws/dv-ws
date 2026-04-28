@@ -2,11 +2,70 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="DataVale AI — Data Infrastructure & Intelligence" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>DataVale AI</title>
+
+    <!-- ═══ FONT FIX: Preconnect + preload + font-display:swap ═══
+         Without this, on slow internet Google Fonts loads late and
+         causes the font "glitch" (system font shows first, then jumps).
+         preconnect warms the DNS+TCP connection before CSS requests it.
+         preload fetches the critical font files immediately.
+         font-display:swap in the @font-face means text shows in fallback
+         font instantly, then swaps smoothly — no invisible text flash.    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Load fonts with display=swap — prevents invisible text on slow net -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ═══ VIDEO SPEED: Preconnect to Supabase so first video loads faster ═══ -->
+    <link rel="preconnect" href="https://bqnvtqcqnbtolanmvpfd.supabase.co" crossorigin />
+    <link rel="dns-prefetch" href="https://bqnvtqcqnbtolanmvpfd.supabase.co" />
+
+    <!-- Preload hero video (v1 — above fold, most important) -->
+    <link
+      rel="preload"
+      href="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v1.mp4"
+      as="video"
+      type="video/mp4"
+      crossorigin
+    />
+
+    <!-- Inline critical CSS: ensures fonts have proper fallbacks immediately.
+         Bebas Neue fallback = Impact (very similar proportions, no layout shift).
+         Syne fallback = system-ui (clean, no FOUT flash).                     -->
+    <style>
+      /* Block render until fonts are declared so there's no fallback flash */
+      @font-face {
+        font-family: 'Bebas Neue';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Bebas Neue'), local('BebasNeue-Regular');
+      }
+      @font-face {
+        font-family: 'Syne';
+        font-style: normal;
+        font-weight: 400 800;
+        font-display: swap;
+        src: local('Syne');
+      }
+
+      /* Prevent white flash on load */
+      html, body { background: #000; margin: 0; padding: 0; }
+      #root { min-height: 100vh; background: #000; }
+    </style>
   </head>
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   </body>
 </html>

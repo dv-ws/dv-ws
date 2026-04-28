@@ -36,7 +36,7 @@ export function Services() {
       {/* HERO — v2.mp4 landscape 3840×2160 */}
       <div className="dv-hero">
         <video className="vid-land" autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562269/v2_ucuew9.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v2.mp4" type="video/mp4"/>
         </video>
         <div className="ov-d"></div><div className="ov-b"></div><div className="ov-s"></div>
         <div className="dv-hc">
@@ -49,7 +49,7 @@ export function Services() {
       {/* v10 strip — short landscape loop, perfect for strip */}
       <div className="sv-strip">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562162/v10_ybkcsx.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v10.mp4" type="video/mp4"/>
         </video>
         <div className="dv-hc-strip rv-s">
           <div className="dv-ey">End-to-End Solutions</div>
@@ -112,7 +112,7 @@ export function Insights() {
       {/* HERO — v12.mp4 landscape 3840×2160 */}
       <div className="dv-hero">
         <video className="vid-land" autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562253/v12_bhah6k.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v12.mp4" type="video/mp4"/>
         </video>
         <div className="ov-d"></div><div className="ov-b"></div><div className="ov-s"></div>
         <div className="dv-hc">
@@ -188,7 +188,7 @@ export function Join() {
       {/* HERO — v4.mp4 landscape 1920×1080 */}
       <div className="dv-hero">
         <video className="vid-land" autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562128/v4_micslr.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v14.mp4" type="video/mp4"/>
         </video>
         <div className="ov-d"></div><div className="ov-b"></div><div className="ov-s"></div>
         <div className="dv-hc">
@@ -202,7 +202,7 @@ export function Join() {
       {/* v5 landscape strip — replaces v13 portrait */}
       <div className="jn-strip">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562219/v5_gdtr74.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v5.mp4" type="video/mp4"/>
         </video>
         <div className="dv-hc-strip rv-s">
           <div className="dv-ey c">Your Intelligence. Our Platform.</div>
@@ -262,7 +262,7 @@ export function Contact() {
       {/* HERO — v5.mp4 landscape 1920×1080 */}
       <div className="dv-hero">
         <video className="vid-land" autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562219/v5_gdtr74.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v5.mp4" type="video/mp4"/>
         </video>
         <div className="ov-d"></div><div className="ov-b"></div><div className="ov-s"></div>
         <div className="dv-hc">

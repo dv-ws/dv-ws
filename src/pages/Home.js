@@ -108,7 +108,7 @@ export default function Home() {
       {/* HERO — v1.mp4 landscape 3840×2160 */}
       <div className="dv-hero">
         <video className="vid-land" autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562275/v1_pg8ccf.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v1.mp4" type="video/mp4"/>
         </video>
         <div className="ov-d"></div>
         <div className="ov-b"></div>
@@ -145,7 +145,7 @@ export default function Home() {
         <div className="hm-sp">
           <div className="hm-sp-v rv-l">
             <video autoPlay muted loop playsInline preload="auto">
-              <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562125/v6_aun1nm.mp4" type="video/mp4"/>
+              <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v6.mp4" type="video/mp4"/>
             </video>
           </div>
           <div className="hm-sp-t rv-r">
@@ -171,7 +171,7 @@ export default function Home() {
       {/* v5 strip landscape */}
       <div className="hm-v5">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562219/v5_gdtr74.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v5.mp4" type="video/mp4"/>
         </video>
         <div className="dv-hc-strip rv-s">
           <div className="dv-ey">End-to-End Solutions</div>
@@ -182,7 +182,7 @@ export default function Home() {
       {/* v13 robot talking — SECTION only, not hero */}
       <div className="hm-rob">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562056/v13_n1nfuy.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v13.mp4" type="video/mp4"/>
         </video>
         <div className="hm-rob-in rv">
           <div className="dv-ey">Human Intelligence Powers Machine Intelligence</div>

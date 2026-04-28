@@ -82,7 +82,7 @@ export default function About() {
       {/* HERO — v7 landscape 3840×2160 */}
       <div className="dv-hero">
         <video className="vid-land" autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562311/v7_myxblt.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v7.mp4" type="video/mp4"/>
         </video>
         <div className="ov-d"></div><div className="ov-b"></div><div className="ov-s"></div>
         <div className="dv-hc">
@@ -98,7 +98,7 @@ export default function About() {
         <div className="ab-2c">
           <div className="ab-2c-l ab-vid-cell rv-l">
             <video autoPlay muted loop playsInline preload="auto">
-              <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562263/v8_zoyplr.mp4" type="video/mp4"/>
+              <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v8.mp4" type="video/mp4"/>
             </video>
           </div>
           <div className="ab-txt rv-r">
@@ -125,7 +125,7 @@ export default function About() {
       {/* v4 landscape featured */}
       <div className="ab-feat">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775562128/v4_micslr.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v3.mp4" type="video/mp4"/>
         </video>
         <div className="dv-hc-half rv">
           <div className="dv-ey">Built for the Age of Machines</div>
@@ -138,7 +138,7 @@ export default function About() {
       {/* v5 landscape strip */}
       <div className="ab-v5">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://res.cloudinary.com/dpdergzh2/video/upload/v1775561979/v5_zs3jjn.mp4" type="video/mp4"/>
+          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v5.mp4" type="video/mp4"/>
         </video>
         <div className="dv-hc-strip rv">
           <div className="dv-ey">Our Approach</div>
