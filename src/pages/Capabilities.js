@@ -40,7 +40,7 @@ export default function Capabilities() {
       {/* HERO — v11.mp4 landscape 4096×2160 */}
       <div className="dv-hero">
         <video className="vid-land" autoPlay muted loop playsInline preload="auto">
-          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v11.mp4" type="video/mp4"/>
+          <source src="https://pub-10e79fa939d147ada3fc673cb5b42570.r2.dev/v11.mp4" type="video/mp4"/>
         </video>
         <div className="ov-d"></div><div className="ov-b"></div><div className="ov-s"></div>
         <div className="dv-hc">
@@ -53,7 +53,7 @@ export default function Capabilities() {
       {/* v12 strip (4K landscape) */}
       <div className="cap-v12">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v12.mp4" type="video/mp4"/>
+          <source src="https://pub-10e79fa939d147ada3fc673cb5b42570.r2.dev/v12.mp4" type="video/mp4"/>
         </video>
         <div className="dv-hc-strip rv-s">
           <div className="dv-ey">Powering Next-Gen AI</div>

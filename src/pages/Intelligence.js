@@ -69,7 +69,7 @@ export default function Intelligence() {
       <div className="dv-hero">
         <div className="int-v9-wrap">
           <video autoPlay muted loop playsInline preload="auto">
-            <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v9.mp4" type="video/mp4"/>
+            <source src="https://pub-10e79fa939d147ada3fc673cb5b42570.r2.dev/v9.mp4" type="video/mp4"/>
           </video>
         </div>
         <div className="ov-d"></div><div className="ov-b"></div><div className="ov-s"></div>
@@ -94,7 +94,7 @@ export default function Intelligence() {
       {/* v11 landscape featured */}
       <div className="int-feat">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v11.mp4" type="video/mp4"/>
+          <source src="https://pub-10e79fa939d147ada3fc673cb5b42570.r2.dev/v11.mp4" type="video/mp4"/>
         </video>
         <div className="dv-hc-half rv">
           <div className="dv-ey">The Human Behind the Machine</div>
@@ -107,7 +107,7 @@ export default function Intelligence() {
       {/* v10 strip */}
       <div className="int-v10">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v10.mp4" type="video/mp4"/>
+          <source src="https://pub-10e79fa939d147ada3fc673cb5b42570.r2.dev/v10.mp4" type="video/mp4"/>
         </video>
         <div className="dv-hc-strip rv">
           <div className="dv-ey">Global Reach</div>

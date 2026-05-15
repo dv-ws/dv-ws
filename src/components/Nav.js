@@ -89,7 +89,7 @@ body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300
   padding:0 48px 88px 48px;
 }
 .dv-hc-half{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 56px 48px;}
-.dv-hc-strip{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:0 48px;}
+.dv-hc-strip{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 48px;}
 
 /* ══════════════════════════════════════════
    TYPOGRAPHY

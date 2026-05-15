@@ -108,7 +108,7 @@ export default function Home() {
       {/* HERO — v1.mp4 landscape 3840×2160 */}
       <div className="dv-hero">
         <video className="vid-land" autoPlay muted loop playsInline preload="auto">
-          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v1.mp4" type="video/mp4"/>
+          <source src="https://pub-10e79fa939d147ada3fc673cb5b42570.r2.dev/v1.mp4" type="video/mp4"/>
         </video>
         <div className="ov-d"></div>
         <div className="ov-b"></div>
@@ -145,7 +145,7 @@ export default function Home() {
         <div className="hm-sp">
           <div className="hm-sp-v rv-l">
             <video autoPlay muted loop playsInline preload="auto">
-              <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v6.mp4" type="video/mp4"/>
+              <source src="https://pub-10e79fa939d147ada3fc673cb5b42570.r2.dev/v6.mp4" type="video/mp4"/>
             </video>
           </div>
           <div className="hm-sp-t rv-r">
@@ -171,7 +171,7 @@ export default function Home() {
       {/* v5 strip landscape */}
       <div className="hm-v5">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v5.mp4" type="video/mp4"/>
+          <source src="https://pub-10e79fa939d147ada3fc673cb5b42570.r2.dev/v5.mp4" type="video/mp4"/>
         </video>
         <div className="dv-hc-strip rv-s">
           <div className="dv-ey">End-to-End Solutions</div>
@@ -182,7 +182,7 @@ export default function Home() {
       {/* v13 robot talking — SECTION only, not hero */}
       <div className="hm-rob">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="https://bqnvtqcqnbtolanmvpfd.supabase.co/storage/v1/object/public/DV/v13.mp4" type="video/mp4"/>
+          <source src="https://pub-10e79fa939d147ada3fc673cb5b42570.r2.dev/v13.mp4" type="video/mp4"/>
         </video>
         <div className="hm-rob-in rv">
           <div className="dv-ey">Human Intelligence Powers Machine Intelligence</div>
