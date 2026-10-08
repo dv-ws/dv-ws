@@ -157,13 +157,13 @@ const joinCss = `
 .jn-strip video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;}
 .jn-strip::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.58);z-index:1;}
 
-.jn-g{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,0.07);}
-.jc{padding:76px 52px;border-right:1px solid rgba(255,255,255,0.07);transition:background 0.4s;}
+.jn-g{display:grid;grid-template-columns:repeat(3, 1fr);border-top:1px solid rgba(255,255,255,0.07);}
+.jc{padding:68px 42px;border-right:1px solid rgba(255,255,255,0.07);transition:background 0.4s;display:flex;flex-direction:column;}
 .jc:last-child{border-right:none;}
 .jc:hover{background:rgba(255,255,255,0.018);}
 .jc-ic{font-size:2.2rem;margin-bottom:22px;display:block;}
-.jc-tt{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:0.02em;color:#fff;margin-bottom:13px;}
-.jc-ds{font-size:0.86rem;color:rgba(255,255,255,0.34);line-height:1.82;margin-bottom:24px;}
+.jc-tt{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.2vw,3rem);letter-spacing:0.02em;color:#fff;margin-bottom:13px;}
+.jc-ds{font-size:0.84rem;color:rgba(255,255,255,0.34);line-height:1.82;margin-bottom:24px;flex:1;}
 .jc-ht{font-size:0.74rem;color:rgba(255,255,255,0.2);margin-bottom:24px;padding:13px 15px;border:1px solid rgba(255,255,255,0.07);line-height:1.72;}
 .jc-ht strong{color:rgba(255,255,255,0.48);}
 .jc-btn{display:inline-flex;align-items:center;gap:12px;padding:15px 24px;font-family:'DM Sans',sans-serif;font-size:0.74rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.32s;width:100%;border:none;cursor:pointer;border-radius:980px;}
@@ -171,10 +171,12 @@ const joinCss = `
 .jc-btn.jw:hover{background:rgba(255,255,255,0.86);transform:scale(1.01);}
 .jc-btn.jg{background:rgba(255,255,255,0.07);color:#fff;border:1px solid rgba(255,255,255,0.14)!important;}
 .jc-btn.jg:hover{background:rgba(255,255,255,0.13);}
+.jc-btn.jp{background:#fff;color:#000;box-shadow:0 0 20px rgba(255,255,255,0.15);}
+.jc-btn.jp:hover{background:rgba(255,255,255,0.86);transform:scale(1.01);}
 .jbl{display:flex;flex-direction:column;text-align:left;flex:1;}
 .jbl span:first-child{font-size:0.58rem;opacity:0.4;text-transform:uppercase;letter-spacing:0.08em;}
 .jbl span:last-child{font-size:0.82rem;font-weight:600;margin-top:2px;}
-@media(max-width:768px){
+@media(max-width:1024px){
   .jn-g{grid-template-columns:1fr;}
   .jc{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);padding:52px 20px;}
 }
@@ -229,6 +231,15 @@ export function Join() {
               <div className="jc-ht"><strong>To:</strong> info@datavaleai.com<br/><strong>Subject:</strong> "Contributor Application – [Your Skill]"<br/>Attach your CV.</div>
               <a href="mailto:info@datavaleai.com?subject=Contributor%20Application%20%E2%80%93%20%5BYour%20Skill%5D&body=Hi%20DataVale%20AI%20Team%2C%0A%0AI%27d%20like%20to%20contribute.%0A%0ASkills%3A%20%5BList%5D%0A%0ACV%20attached.%0A%0ABest%2C" className="jc-btn jg">
                 <span>✉</span><div className="jbl"><span>Opens email app</span><span>Send CV — Contributor Application</span></div><span>→</span>
+              </a>
+            </div>
+            <div className="jc">
+              <span className="jc-ic">⭐</span>
+              <div className="jc-tt">Join Talent Pool</div>
+              <p className="jc-ds">Looking to be part of upcoming projects, evaluations, and specialized data tasks? Register your profile directly into our talent network.</p>
+              <div className="jc-ht"><strong>Online Form:</strong> Google Form Application<br/><strong>Estimated Time:</strong> ~2-3 mins<br/>Get priority for upcoming pipelines.</div>
+              <a href="https://forms.gle/onbq13vx8o4bi7p48" target="_blank" rel="noreferrer" className="jc-btn jp">
+                <span>📝</span><div className="jbl"><span>Opens Application Form</span><span>Fill Form — Join Talent Pool</span></div><span>→</span>
               </a>
             </div>
           </div>

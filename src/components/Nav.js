@@ -40,7 +40,6 @@ body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300
 .dv-mob a{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,8vw,3.2rem);color:rgba(255,255,255,0.38);text-decoration:none;letter-spacing:0.06em;transition:color 0.3s;}
 .dv-mob a:hover{color:#fff;}
 .dv-mob .mob-cta{font-family:'DM Sans',sans-serif;font-size:0.8rem;border:1px solid rgba(255,255,255,0.2);padding:13px 28px;letter-spacing:0.12em;text-transform:uppercase;color:#fff;margin-top:6px;}
-/* Close button inside mobile menu */
 .dv-mob-close{
   position:absolute;top:20px;right:20px;
   background:none;border:none;cursor:pointer;
@@ -53,11 +52,7 @@ body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300
 }
 .dv-mob-close:hover{color:#fff;}
 
-/* ══════════════════════════════════════════
-   VIDEO SYSTEM
-   Landscape: standard object-fit cover
-   Portrait: contained or centered-fill depending on context
-══════════════════════════════════════════ */
+/* VIDEO SYSTEM */
 .dv-hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;display:flex;flex-direction:column;}
 .dv-half{position:relative;width:100%;height:60vh;min-height:380px;overflow:hidden;display:flex;flex-direction:column;}
 .dv-strip{position:relative;width:100%;height:44vh;min-height:260px;overflow:hidden;display:flex;flex-direction:column;}
@@ -68,21 +63,7 @@ body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300
 .ov-r{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.35) 55%,transparent 100%);z-index:2;}
 .ov-s{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.055) 3px,rgba(0,0,0,0.055) 4px);pointer-events:none;z-index:3;}
 
-/* ══════════════════════════════════════════
-   HERO CONTENT — DEFINITIVE NAVBAR FIX
-
-   The problem: clamp(4rem,11vw,11rem) at 1440px = 158px/line
-   Three lines = 474px+ growing UPWARD from bottom, hitting nav.
-
-   Solution:
-   1. Cap font at 7rem max (safe for 3 lines at any viewport)
-   2. Use max-height:45vh on the text block — if text exceeds
-      45% of viewport height it stays contained in lower half
-   3. padding-bottom:88px keeps text off the very bottom edge
-   
-   justify-content:flex-end anchors text to BOTTOM always.
-   Text grows UP from bottom — never touches nav at top.
-══════════════════════════════════════════ */
+/* HERO CONTENT */
 .dv-hc{
   position:absolute;inset:0;z-index:10;
   display:flex;flex-direction:column;justify-content:flex-end;
@@ -91,23 +72,13 @@ body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300
 .dv-hc-half{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 56px 48px;}
 .dv-hc-strip{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 48px;}
 
-/* ══════════════════════════════════════════
-   TYPOGRAPHY
-   
-   dv-h1: capped at 7rem — safe for 3-line hero on any desktop.
-   At 1440px: 3 lines × 7rem × 0.9 lineheight = ~378px
-   viewport = 900px → text block is 42% of viewport = safe bottom zone
-══════════════════════════════════════════ */
+/* TYPOGRAPHY */
 .dv-ey{font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-bottom:18px;display:flex;align-items:center;gap:12px;}
 .dv-ey::before{content:'';width:22px;height:1px;background:rgba(255,255,255,0.28);}
 .dv-ey.c{justify-content:center;}
 .dv-ey.c::before{display:none;}
 
-.dv-h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3.2rem,5.5vw,7rem);
-  line-height:0.9;letter-spacing:0.01em;color:#fff;
-}
+.dv-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.2rem,5.5vw,7rem);line-height:0.9;letter-spacing:0.01em;color:#fff;}
 .dv-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,5vw,6.5rem);line-height:0.9;letter-spacing:0.01em;color:#fff;}
 .dv-h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.5vw,4.2rem);line-height:0.92;letter-spacing:0.01em;color:#fff;}
 .dv-dim{color:rgba(255,255,255,0.2);}
@@ -115,7 +86,7 @@ body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300
 .dv-body{font-size:clamp(0.82rem,1.2vw,0.96rem);color:rgba(255,255,255,0.4);line-height:1.88;max-width:540px;}
 .dv-body strong{color:rgba(255,255,255,0.74);font-weight:400;}
 
-/* BUTTONS — compact Apple pill */
+/* BUTTONS */
 .dv-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
 .btn-w{background:#fff;color:#000;font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;padding:10px 20px;border:none;cursor:pointer;transition:all 0.32s cubic-bezier(0.4,0,0.2,1);text-decoration:none;display:inline-flex;align-items:center;gap:7px;border-radius:980px;white-space:nowrap;}
 .btn-w:hover{background:rgba(255,255,255,0.86);transform:scale(1.02);}
@@ -137,6 +108,31 @@ body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300
 .dv-mi{padding:0 30px;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.15);white-space:nowrap;display:flex;align-items:center;gap:30px;}
 .dv-mi::after{content:'◆';font-size:0.3rem;color:rgba(255,255,255,0.1);}
 @keyframes mqs{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* PARTNERS SLIDER */
+.pt-section{padding:72px 0;background:#000;border-top:1px solid rgba(255,255,255,0.07);position:relative;overflow:hidden;}
+.pt-header{text-align:center;margin-bottom:48px;padding:0 20px;}
+.pt-marquee-outer{
+  display:flex;width:100%;overflow:hidden;
+  mask-image:linear-gradient(to right,transparent,black 12%,black 88%,transparent);
+  -webkit-mask-image:linear-gradient(to right,transparent,black 12%,black 88%,transparent);
+}
+.pt-track{display:flex;align-items:center;gap:64px;width:max-content;animation:ptSlide 26s linear infinite;}
+.pt-track:hover{animation-play-state:paused;}
+@keyframes ptSlide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.pt-logo-wrap{
+  flex-shrink:0;height:52px;display:flex;align-items:center;justify-content:center;
+  padding:0 14px;opacity:0.75;transition:all 0.35s ease;
+}
+.pt-logo-wrap:hover{opacity:1;transform:scale(1.08);}
+.pt-logo-wrap img{max-height:36px;width:auto;max-width:145px;object-fit:contain;border-radius:4px;display:block;}
+.pt-logo-invert{filter:invert(1) brightness(1.2);}
+.pt-logo-nvidia{
+  mix-blend-mode:screen;
+  filter:brightness(1.25) contrast(1.1);
+  transform:scale(1.10);
+  transform-origin:center;
+}
 
 /* STAT ROW */
 .dv-sr{display:flex;border-top:1px solid rgba(255,255,255,0.07);}
@@ -160,7 +156,7 @@ body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300
 .rv-s{opacity:0;transform:scale(0.97);transition:opacity 1s cubic-bezier(0.25,0.46,0.45,0.94),transform 1s cubic-bezier(0.25,0.46,0.45,0.94);}
 .rv-s.in{opacity:1;transform:scale(1);}
 
-/* FOOTER — simplified */
+/* FOOTER */
 .dv-ft{border-top:1px solid rgba(255,255,255,0.07);padding:52px 48px;background:#000;}
 .dv-ft-in{max-width:1400px;margin:0 auto;}
 .dv-ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
@@ -195,6 +191,9 @@ body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300
   .dv-ft-bot{flex-direction:column;align-items:flex-start;gap:20px;}
   .dv-ft-brand{flex-direction:column;align-items:flex-start;gap:12px;}
   .dv-ft-right{gap:20px;}
+  .pt-track{gap:40px;}
+  .pt-logo-wrap{height:42px;}
+  .pt-logo-wrap img{max-height:30px;}
 }
 @media(max-width:480px){
   .dv-logo img{height:48px;width:96px;}
@@ -207,6 +206,7 @@ body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;font-weight:300
 const LI = () => <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>;
 const IG = () => <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>;
 const XI = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>;
+const PIN = () => <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.291 1.199-.334 1.374-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026l.032-.026z"/></svg>;
 
 const MQ_ITEMS = ["Data Collection","Pipeline Architecture","Real-Time Processing","Intelligent Structuring","Scalable Platforms","Decision Intelligence","Data Reliability","Actionable Insights","AGI Training Data","RLHF Datasets","Human Feedback","Multimodal AI","Benchmark Evals","SFT Datasets","RL Environments","Embodied AI","Robotics Data","Agentic Systems"];
 
@@ -215,7 +215,65 @@ export function Marquee() {
   return <div className="dv-mw"><div className="dv-mt">{all.map((x,i)=><span key={i} className="dv-mi">{x}</span>)}</div></div>;
 }
 
-/* Footer — simplified: just logo + tagline + socials + copyright */
+const PARTNERS = [
+  { 
+    name: "NVIDIA", 
+    logo: "https://i.pinimg.com/1200x/c7/b1/22/c7b122e4326daea7396d6c8269546c96.jpg",
+    className: "pt-logo-nvidia"
+  },
+  { 
+    name: "Turing", 
+    logo: "https://mms.businesswire.com/media/20260409774528/en/2769676/4/Turing_Logo_Full_Black.jpg",
+    className: "pt-logo-invert"
+  },
+  { 
+    name: "Airtm", 
+    logo: "https://images.crunchbase.com/image/upload/c_pad,h_160,w_160,f_auto,b_white,q_auto:eco,dpr_1/t_cb-profile-company/bcbi2uintanrjqudwpt6?ik-sanitizeSvg=true",
+    className: ""
+  },
+  { 
+    name: "PayPal", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg",
+    className: ""
+  },
+  { 
+    name: "Wise", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/e/e8/Wise_Logo_512x124.svg",
+    className: ""
+  },
+  { 
+    name: "HDFC Bank", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/28/HDFC_Bank_Logo.svg",
+    className: ""
+  },
+];
+
+export function Partners() {
+  const allPartners = [...PARTNERS, ...PARTNERS, ...PARTNERS];
+  return (
+    <section className="pt-section">
+      <div className="pt-header rv">
+        <div className="dv-ey c">Trusted Ecosystem</div>
+        <h2 className="dv-h3" style={{ textAlign: "center", marginTop: "4px" }}>Our Partners</h2>
+      </div>
+      <div className="pt-marquee-outer">
+        <div className="pt-track">
+          {allPartners.map((p, idx) => (
+            <div key={idx} className="pt-logo-wrap" title={p.name}>
+              <img 
+                src={p.logo} 
+                alt={p.name}
+                className={p.className}
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function Footer() {
   return (
     <footer className="dv-ft">
@@ -230,6 +288,7 @@ export function Footer() {
             <div className="dv-ft-socs">
               <a href="https://www.linkedin.com/company/datavaleai" target="_blank" rel="noreferrer" className="dv-ft-soc" title="LinkedIn"><LI/></a>
               <a href="https://www.instagram.com/datavaleai" target="_blank" rel="noreferrer" className="dv-ft-soc" title="Instagram"><IG/></a>
+              <a href="https://pin.it/67cqIvFR1" target="_blank" rel="noreferrer" className="dv-ft-soc" title="Pinterest"><PIN/></a>
               <a href="https://x.com/DatavaleAi" target="_blank" rel="noreferrer" className="dv-ft-soc" title="X / Twitter"><XI/></a>
               <a href="mailto:info@datavaleai.com" className="dv-ft-soc" title="Email">✉</a>
             </div>
@@ -266,7 +325,7 @@ export default function Nav() {
     let mx=0,my=0,rx=0,ry=0,id;
     const mv = e => {
       mx=e.clientX; my=e.clientY;
-      const ov = e.target.closest("a,button,.cap-c,.art-c,.jc,.tc,.dv-st,.hq-i");
+      const ov = e.target.closest("a,button,.cap-c,.art-c,.jc,.tc,.dv-st,.hq-i,.pt-logo-wrap");
       ring.classList.toggle("h", !!ov);
     };
     document.addEventListener("mousemove", mv);
@@ -306,7 +365,6 @@ export default function Nav() {
       <style>{GCSS}</style>
       <div className="dvc"><div className="dvc-ring" id="dvring"></div><div className="dvc-dot" id="dvdot"></div></div>
       <div className={`dv-mob${menu?" open":""}`}>
-        {/* Close button inside the menu — always visible when open */}
         <button className="dv-mob-close" onClick={close} aria-label="Close menu">✕</button>
         <Link to="/" onClick={close}>Home</Link>
         <Link to="/about" onClick={close}>About</Link>
@@ -314,6 +372,7 @@ export default function Nav() {
         <Link to="/capabilities" onClick={close}>Capabilities</Link>
         <Link to="/services" onClick={close}>Services</Link>
         <Link to="/insights" onClick={close}>Insights</Link>
+        <a href="https://drive.google.com/drive/folders/1KMzZtmi0Zayp8OP1dQslLFnprbd8T-Mj?usp=drive_link" target="_blank" rel="noreferrer" onClick={close}>Case Studies</a>
         <Link to="/join" onClick={close}>Join Us</Link>
         <Link to="/contact" onClick={close} className="mob-cta">Get in Touch</Link>
       </div>
@@ -326,6 +385,7 @@ export default function Nav() {
           <li><Link to="/capabilities" className={a("/capabilities")}>Capabilities</Link></li>
           <li><Link to="/services" className={a("/services")}>Services</Link></li>
           <li><Link to="/insights" className={a("/insights")}>Insights</Link></li>
+          <li><a href="https://drive.google.com/drive/folders/1KMzZtmi0Zayp8OP1dQslLFnprbd8T-Mj?usp=drive_link" target="_blank" rel="noreferrer">Case Studies</a></li>
           <li><Link to="/join" className={a("/join")}>Join Us</Link></li>
         </ul>
         <div className="dv-nr">

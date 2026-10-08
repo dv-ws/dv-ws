@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Nav, { Footer, Marquee } from "../components/Nav";
+import Nav, { Footer, Marquee, Partners } from "../components/Nav";
 
 function TW({ words, speed=78, del=40, pause=2400 }) {
   const [d,setD]=useState(""); const [wi,setWi]=useState(0); const [dl,setDl]=useState(false); const [bl,setBl]=useState(true);
@@ -129,6 +129,9 @@ export default function Home() {
       </div>
 
       <Marquee/>
+
+      {/* Partners section */}
+      <Partners/>
 
       {/* Quick nav */}
       <div className="blk">
